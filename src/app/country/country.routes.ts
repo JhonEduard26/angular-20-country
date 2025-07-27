@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { ByCapital } from './pages/by-capital/by-capital';
 import { CountryLayout } from './layout/country-layout/country-layout';
+import { ByCountry } from './pages/by-country/by-country';
+import { ByRegion } from './pages/by-region/by-region';
+import { ByCode } from './pages/by-code/by-code';
 
 export const countryRoutes: Routes = [
   {
@@ -13,13 +16,15 @@ export const countryRoutes: Routes = [
       },
       {
         path: 'by-country',
-        loadComponent: () =>
-          import('./pages/by-country/by-country').then((m) => m.ByCountry),
+        component: ByCountry,
       },
       {
         path: 'by-region',
-        loadComponent: () =>
-          import('./pages/by-region/by-region').then((m) => m.ByRegion),
+        component: ByRegion,
+      },
+      {
+        path: 'by/:isocode',
+        component: ByCode,
       },
       {
         path: '**',

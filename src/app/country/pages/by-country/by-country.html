@@ -1,1 +1,6 @@
-<p>by-country works!</p>
+<country-search-input
+  [placeholder]="'Buscar por país'"
+  (search)="onSearch($event)"
+/>
+
+<country-list />

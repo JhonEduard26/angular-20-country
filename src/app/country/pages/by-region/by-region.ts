@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { List } from '../../components/list/list';
 
 @Component({
   selector: 'app-by-region',
-  imports: [],
+  imports: [List],
   templateUrl: './by-region.html',
-  styles: ``
+  styles: ``,
 })
-export class ByRegion {
-
-}
+export class ByRegion {}

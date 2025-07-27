@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
+import { SearchInput } from '../../components/search-input/search-input';
+import { List } from '../../components/list/list';
 
 @Component({
   selector: 'app-by-country',
-  imports: [],
+  imports: [SearchInput, List],
   templateUrl: './by-country.html',
-  styles: ``
+  styles: ``,
 })
 export class ByCountry {
-
+  onSearch(value: string) {
+    console.log('Event emitted with value:', value);
+    // Implement the search logic here
+  }
 }

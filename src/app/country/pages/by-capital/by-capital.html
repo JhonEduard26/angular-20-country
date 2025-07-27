@@ -1,1 +1,6 @@
-<p>by-capital works!</p>
+<country-search-input
+  [placeholder]="'Buscar por capital'"
+  (search)="onSearch($event)"
+/>
+
+<country-list />
