@@ -17,7 +17,7 @@
       </g>
     </svg>
     <input
-      type="search"
+      type="text"
       class="grow"
       [placeholder]="placeholder()"
       (keyup.enter)="onSearchValue(txtSearch.value)"
@@ -25,7 +25,11 @@
     />
   </label>
 
-  <button class="btn btn-primary" (click)="onSearchValue(txtSearch.value)">
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="onSearchValue(txtSearch.value)"
+  >
     Buscar
   </button>
 </section>

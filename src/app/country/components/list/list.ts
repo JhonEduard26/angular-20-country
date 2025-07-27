@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import type { CountryResponse } from '../../interfaces/country-interface';
 
 @Component({
   selector: 'country-list',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './list.html',
   styles: ``,
 })
-export class List {}
+export class List {
+  countries = input.required<CountryResponse[]>();
+}
