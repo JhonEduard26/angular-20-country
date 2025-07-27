@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { List } from '../../components/list/list';
 
 @Component({
@@ -7,4 +7,6 @@ import { List } from '../../components/list/list';
   templateUrl: './by-region.html',
   styles: ``,
 })
-export class ByRegion {}
+export class ByRegion {
+  countries = signal([]);
+}

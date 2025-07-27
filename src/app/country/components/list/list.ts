@@ -1,12 +1,13 @@
 import { Component, input } from '@angular/core';
-import type { CountryResponse } from '../../interfaces/country-interface';
+import type { Country } from '../../interfaces/country-interface';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'country-list',
-  imports: [],
+  imports: [DecimalPipe],
   templateUrl: './list.html',
   styles: ``,
 })
 export class List {
-  countries = input.required<CountryResponse[]>();
+  countries = input.required<Country[]>();
 }

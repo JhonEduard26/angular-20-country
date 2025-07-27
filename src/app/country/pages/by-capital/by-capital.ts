@@ -1,8 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
+
 import { SearchInput } from '../../components/search-input/search-input';
 import { List } from '../../components/list/list';
-import { Country } from '../../services/country';
-import type { CountryResponse } from '../../interfaces/country-interface';
+import { CountryService } from '../../services/country-service';
+import type { Country } from '../../interfaces/country-interface';
 
 @Component({
   selector: 'app-by-capital',
@@ -11,10 +12,10 @@ import type { CountryResponse } from '../../interfaces/country-interface';
   styles: ``,
 })
 export class ByCapital {
-  private readonly countryService = inject(Country);
+  private readonly countryService = inject(CountryService);
   private isLoading = signal<boolean>(false);
   private hasError = signal<string | null>(null);
-  protected countries = signal<CountryResponse[]>([]);
+  protected countries = signal<Country[]>([]);
 
   onSearch(value: string) {
     if (this.isLoading()) return;
