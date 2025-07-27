@@ -14,7 +14,7 @@ import type { Country } from '../../interfaces/country-interface';
 export class ByCapital {
   private readonly countryService = inject(CountryService);
   private isLoading = signal<boolean>(false);
-  private hasError = signal<string | null>(null);
+  protected hasError = signal<string | null>(null);
   protected countries = signal<Country[]>([]);
 
   onSearch(value: string) {
@@ -24,13 +24,13 @@ export class ByCapital {
 
     this.countryService.searchByCapital(value).subscribe({
       next: (data) => {
-        this.countries.set(data);
         this.isLoading.set(false);
+        this.countries.set(data);
       },
       error: (error) => {
-        this.hasError.set('No se pudo encontrar la capital');
-        this.countries.set([]);
         this.isLoading.set(false);
+        this.hasError.set(error);
+        this.countries.set([]);
       },
     });
   }
