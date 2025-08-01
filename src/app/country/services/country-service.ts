@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, delay, map, Observable, throwError } from 'rxjs';
 
 import { CountryMapper } from '../mappers/country-mapper';
 import type { RestCountry } from '../interfaces/rest-country-interface';
@@ -31,10 +31,24 @@ export class CountryService {
     query = query.toLowerCase().trim();
     return this.http.get<RestCountry[]>(`${BASE_URL}/name/${query}`).pipe(
       map((items) => CountryMapper.mapRestCountriesToCountries(items)),
+      delay(3000),
       catchError((error) => {
         console.error('Error fetching countries by name:');
         return throwError(
           () => new Error('No se pudo encontrar el país: ' + query)
+        );
+      })
+    );
+  }
+
+  searchCountryByIsoCode(code: string) {
+    return this.http.get<RestCountry[]>(`${BASE_URL}/alpha/${code}`).pipe(
+      map((items) => CountryMapper.mapRestCountriesToCountries(items)),
+      map((countries) => countries.at(0)),
+      catchError((error) => {
+        console.error('Error fetching countries by name:');
+        return throwError(
+          () => new Error('No se pudo encontrar el país con el código: ' + code)
         );
       })
     );
