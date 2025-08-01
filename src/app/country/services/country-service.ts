@@ -26,4 +26,17 @@ export class CountryService {
       })
     );
   }
+
+  searchByCountry(query: string) {
+    query = query.toLowerCase().trim();
+    return this.http.get<RestCountry[]>(`${BASE_URL}/name/${query}`).pipe(
+      map((items) => CountryMapper.mapRestCountriesToCountries(items)),
+      catchError((error) => {
+        console.error('Error fetching countries by name:');
+        return throwError(
+          () => new Error('No se pudo encontrar el país: ' + query)
+        );
+      })
+    );
+  }
 }

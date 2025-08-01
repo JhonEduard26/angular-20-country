@@ -24,10 +24,19 @@
         </td>
         <td>{{ country.name }}</td>
         <td>{{ country.capital }}</td>
-        <td class="badge">
+        <td class="badge badge-primary">
           {{ country.population | number }}
         </td>
+        <td>
+          <a
+            [routerLink]="['/country/by', country.isoCode]"
+            class="link link-primary"
+          >
+            Ver detalles
+          </a>
+        </td>
       </tr>
+
       }
     </tbody>
   </table>

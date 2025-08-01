@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, resource, signal } from '@angular/core';
 import { SearchInput } from '../../components/search-input/search-input';
 import { List } from '../../components/list/list';
+import { CountryService } from '../../services/country-service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-by-country',
@@ -9,10 +11,19 @@ import { List } from '../../components/list/list';
   styles: ``,
 })
 export class ByCountry {
-  countries = signal([]);
+  private readonly countryService = inject(CountryService);
+  query = signal<string>('');
 
-  onSearch(value: string) {
-    console.log('Event emitted with value:', value);
-    // Implement the search logic here
-  }
+  countryResource = resource({
+    params: () => ({
+      query: this.query(),
+    }),
+    loader: async ({ params }) => {
+      if (!params.query) return [];
+
+      return await firstValueFrom(
+        this.countryService.searchByCountry(params.query)
+      );
+    },
+  });
 }
