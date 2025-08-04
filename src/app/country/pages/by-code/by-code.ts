@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { CountryService } from '../../services/country-service';
+import { NotFound } from '../../../shared/components/not-found/not-found';
+import { Information } from './information/information';
 
 @Component({
   selector: 'country-by-code',
-  imports: [],
+  imports: [NotFound, Information],
   templateUrl: './by-code.html',
   styles: ``,
 })

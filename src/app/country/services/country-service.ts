@@ -44,6 +44,7 @@ export class CountryService {
   searchCountryByIsoCode(code: string) {
     return this.http.get<RestCountry[]>(`${BASE_URL}/alpha/${code}`).pipe(
       map((items) => CountryMapper.mapRestCountriesToCountries(items)),
+      delay(1000),
       map((countries) => countries.at(0)),
       catchError((error) => {
         console.error('Error fetching countries by name:');
