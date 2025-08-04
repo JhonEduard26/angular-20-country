@@ -20,7 +20,7 @@
       type="text"
       class="grow"
       [placeholder]="placeholder()"
-      (keyup.enter)="onSearchValue(txtSearch.value)"
+      (keyup)="inputValue.set(txtSearch.value)"
       #txtSearch
     />
   </label>
@@ -28,7 +28,7 @@
   <button
     type="button"
     class="btn btn-primary"
-    (click)="onSearchValue(txtSearch.value)"
+    (click)="this.search.emit(txtSearch.value)"
   >
     Buscar
   </button>
