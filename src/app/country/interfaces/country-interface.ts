@@ -8,3 +8,11 @@ export interface Country {
   population: number;
   currency: string;
 }
+
+export type Region =
+  | 'Africa'
+  | 'Americas'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania'
+  | 'Antarctic';

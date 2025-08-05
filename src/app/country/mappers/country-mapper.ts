@@ -3,7 +3,7 @@ import type { RestCountry } from '../interfaces/rest-country-interface';
 
 export class CountryMapper {
   static mapRestCountryToCountry(restCountry: RestCountry): Country {
-    const currencyKeys = Object.keys(restCountry.currencies);
+    const currencyKeys = Object.keys(restCountry.currencies ?? {});
     const currencyStr = currencyKeys
       .map((key) => {
         const currency = restCountry.currencies[key];
@@ -13,7 +13,7 @@ export class CountryMapper {
 
     return {
       area: restCountry.area,
-      capital: restCountry.capital.join(', '),
+      capital: restCountry.capital?.join(', '),
       currency: currencyStr,
       flag: restCountry.flag,
       flagSvg: restCountry.flags.svg,
