@@ -43,8 +43,6 @@ export class CountryService {
       return of(this.queryCacheCountry.get(query) ?? []);
     }
 
-    console.log('Llegando al servidor', query);
-
     return this.http.get<RestCountry[]>(`${BASE_URL}/name/${query}`).pipe(
       map((items) => CountryMapper.mapRestCountriesToCountries(items)),
       tap((countries) => this.queryCacheCountry.set(query, countries)),

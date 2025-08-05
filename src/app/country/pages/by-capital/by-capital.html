@@ -1,6 +1,7 @@
 <country-search-input
   [placeholder]="'Buscar por capital'"
   (search)="query.set($event)"
+  [initialValue]="query()"
 />
 
 <country-list
